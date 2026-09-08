@@ -1,0 +1,27 @@
+language: minimal
+
+script:
+  - |
+    echo "Triggering testRigor..."
+
+    RANDOM_BRANCH="branch-$(date +%s)-$RANDOM"
+    RANDOM_COMMIT="commit-$(date +%s)-$RANDOM"
+
+    echo "Branch: $RANDOM_BRANCH"
+    echo "Commit: $RANDOM_COMMIT"
+
+    curl -X POST \
+      -H "Content-type: application/json" \
+      -H "auth-token: $TESTRIGOR_AUTH_TOKEN" \
+      --data "{
+        \"branch\": {
+          \"name\": \"$RANDOM_BRANCH\",
+          \"commit\": \"$RANDOM_COMMIT\"
+        },
+        \"url\": \"https://google.com\",
+        \"storedValues\": {
+          \"storedValueName1\": \"Value\"
+        },
+        \"customName\": \"Travis CI Run\"
+      }" \
+      https://api.testrigor.com/api/v1/apps/FNSnDZ5BH7bTHcG7e/retest
