@@ -1,77 +1,11 @@
-Skip to content
-tROmkar
-travis_ci_cd
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Files
-Go to file
-t
-T
-.travis.yml
-test_travel.txt
-travis_ci_cd
-/
-.travis.yml
-in
-main
-
-Edit
-
-Preview
-Indent mode
-
-Spaces
-Indent size
-
-2
-Line wrap mode
-
-No wrap
-Editing .travis.yml file contents
-  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
-language: minimal
+language: shell
 
 script:
   - |
     echo "Triggering testRigor..."
 
-    RANDOM_BRANCH="branch-$(date +%s)-$RANDOM"
-    RANDOM_COMMIT="commit-$(date +%s)-$RANDOM"
+    RANDOM_BRANCH="qa-$(date +%Y%m%d%H%M%S)"
+    RANDOM_COMMIT="$(printf '%s' "$(date +%s)-$RANDOM" | sha1sum | cut -c1-12)"
 
     echo "Branch: $RANDOM_BRANCH"
     echo "Commit: $RANDOM_COMMIT"
@@ -88,9 +22,6 @@ script:
         \"storedValues\": {
           \"storedValueName1\": \"Value\"
         },
-        \"customName\": \"Travis CI Run\"
+        \"customName\": \"Travis CI Run - $RANDOM_BRANCH\"
       }" \
       https://api.testrigor.com/api/v1/apps/FNSnDZ5BH7bTHcG7e/retest
-
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
- 
